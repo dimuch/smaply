@@ -3,6 +3,27 @@ import {EditIcon, TurnOffIcon, UserIcon} from '../icon';
 
 import {getUserAction} from '../../services/persona';
 
+
+const ListItem = ( {action, actionButtonHandlersMapper} ) => {
+  const GeneratedIcon = action.icon;
+  const caption = action.text;
+
+  return (
+    <li className="smaply-group-item" key={action.id}>
+      <button className={"smaply-icon-button button-caption-bottom button-middle"}
+              onClick={() => actionButtonHandlersMapper[action.id](action)}
+      >
+        <div className="smaply-icon">
+          <GeneratedIcon/>
+        </div>
+        <div className="smaply-button-caption">
+          <span>{caption}</span>
+        </div>
+      </button>
+    </li>
+  )
+}
+
 export default function PersonalToolBar() {
   const actions = getUserAction();
 
@@ -74,21 +95,20 @@ export default function PersonalToolBar() {
         <ul className="smaply-group-controls">
           {
             actions.map(action => {
-              const GeneratedIcon = action.icon;
-              const caption = action.text;
+              if(action.isButtonGroup){
+                return (
+                  <ul className="smaply-group-controls">
+                    {
+                      action.items.map(action => (
+                        <ListItem action={action} actionButtonHandlersMapper={actionButtonHandlersMapper} key={action.id}/>
+                      ))
+                    }
+                  </ul>
+                )
+              }
+
               return (
-                <li className="smaply-group-item" key={action.id}>
-                  <button className={"smaply-icon-button button-caption-bottom button-middle" + (disabledMode ? '' : 'active')}
-                          onClick={() => actionButtonHandlersMapper[action.id](action)}
-                  >
-                    <div className="smaply-icon">
-                      <GeneratedIcon/>
-                    </div>
-                    <div className="smaply-button-caption">
-                      <span>{caption}</span>
-                    </div>
-                  </button>
-                </li>
+                <ListItem action={action} actionButtonHandlersMapper={actionButtonHandlersMapper} key={action.id}/>
               )
             })
           }

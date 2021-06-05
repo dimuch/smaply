@@ -36,21 +36,21 @@ export function getUserAction(){
       icon: ExportIcon,
       text: "Export"
     },
-    // {
-    //   isButtonGroup: true,
-    //   children: [
-    //     {
-    //       id: 'duplicate',
-    //       icon: DuplicateIcon,
-    //       text: "Duplicate"
-    //     },
-    //     {
-    //       id: 'move',
-    //       icon: MoveIcon,
-    //       text: "Move"
-    //     }
-    //   ]
-    // },
+    {
+      isButtonGroup: true,
+      items: [
+        {
+          id: 'duplicate',
+          icon: DuplicateIcon,
+          text: "Duplicate"
+        },
+        {
+          id: 'move',
+          icon: MoveIcon,
+          text: "Move"
+        }
+      ]
+    },
     {
       id: 'help',
       icon: HelpIcon,

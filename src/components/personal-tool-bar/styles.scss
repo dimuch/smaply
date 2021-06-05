@@ -64,8 +64,28 @@
         }
       }
 
+      &:hover{
+        svg path{
+          fill: $scroll-bar;
+        }
+        .smaply-button-caption{
+          span{
+            color: $scroll-bar;
+          }
+        }
+      }
+
       &:last-child{
         margin-right: 0;
+      }
+    }
+    .smaply-group-controls{
+      margin-right: 1.25rem;
+      .smaply-group-item {
+        margin-right: .5rem;
+        &:last-child{
+          margin-right: 0;
+        }
       }
     }
   }
