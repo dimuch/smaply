@@ -1,0 +1,14 @@
+.smaply-user-dashboard-wrapper{
+  display: flex;
+  height: calc(100vh - 72px);
+  overflow-y: hidden;
+}
+.smaply-user-dashboard{
+  outline: 1px solid red;
+  width: 30%;
+  overflow-y: auto;
+}
+.smaply-user-templates{
+  width: 70%;
+  outline: 1px solid blue;
+}

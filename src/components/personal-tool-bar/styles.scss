@@ -1,0 +1,48 @@
+.smaply-persona-tool-bar-top{
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 0 1.5rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F0F0F0 100%);
+
+  .smaply-persona-tool-bar-left-group, .smaply-persona-tool-bar-right-group{
+    display: flex;
+  }
+
+  .smaply-group-controls{
+    display: flex;
+    .smaply-group-item{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 .5rem;
+      margin-right: .25rem;
+
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.smaply-icon ~ .smaply-icon-text{
+  margin-left: .25rem;
+}
+
+.smaply-icon-text{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1rem;
+  border-radius: .5rem;
+
+  &.plain-text{
+    min-width: 4rem;
+    background-color: transparent;
+    span{
+      font-size: .875rem;
+      font-weight: 300;
+    }
+  }
+}

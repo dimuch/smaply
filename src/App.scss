@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+//reset
+@import "./styles/reset";
+
+//base styles
+@import "./styles/variables";
+@import "./styles/colors";
+@import "./styles/typography";
+@import "./styles/scroll-bar";
+
+@import "./components/icon/styles";
+
+@import './components/top-organization-header/styles';
+@import './components/personal-tool-bar/styles';
+@import './components/persona-card/styles';
+
+@import './content/pages/main-page/styles';
+@import './content/pages/user-dashboard-page/styles';

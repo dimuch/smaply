@@ -1,0 +1,64 @@
+h1, .h1, .head-large { //Heading Large
+  font-size: 22px;
+  color: $black;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+h2, .h2, .head-medium { //Heading Medium
+  font-size: 18px;
+  color: $black;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+h3, .h3, .head-small{ //Heading Small
+  font-size: 15px;
+  color: $black;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+h4, .h4 {//Section Heading Label
+  font-size: 11px;
+  color: $section-text;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+label {
+  font-size: 11px;
+  color: $section-text;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+p{
+  font-size: 12px;
+  color: $section-text;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: 1.67;
+  letter-spacing: 0.04px;
+}
+
+span { //Small Body Text Content
+  font-size: 12px;
+  color: $section-text;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+span strong { //Important Messages, Bold, Small Body Text Content, Bold
+  font-size: 12px;
+  color: $section-text;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: bold;
+  line-height: normal;
+  letter-spacing: normal;
+}

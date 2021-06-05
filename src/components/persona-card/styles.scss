@@ -1,0 +1,17 @@
+.smaply-persona-card{
+  padding: 1rem;
+  margin-right: 2rem;
+  border: 1px solid $black;
+  border-radius: .5rem;
+  cursor: pointer;
+
+  h2{
+    color: $black;
+  }
+  &:hover{
+    border-color: $scroll-bar;
+    h2{
+      color: $scroll-bar;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+
+/* Works on Chrome/Edge/Safari */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $scroll-bar;
+  border-radius: 2px;
+  border: none;
+}
