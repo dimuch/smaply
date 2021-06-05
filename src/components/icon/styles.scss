@@ -1,10 +1,14 @@
 .smaply-icon{
   width: 1.125rem;
   height: 1.125rem;
-  //margin-right: .25rem;
 
   &.icon-middle{
     width: 1rem;
     height: 1rem;
+  }
+
+  &.icon-big{
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }

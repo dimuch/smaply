@@ -1,0 +1,32 @@
+.smaply-icon-button{
+  display: flex;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+
+  &.button-middle{
+    width: auto;
+    max-width: 4rem;
+    height: 2.5rem;
+  }
+
+  &.button-caption-bottom{
+    flex-direction: column;
+  }
+
+  svg path{
+    fill: #B1B6B6;
+  }
+
+  &.active{
+    svg path{
+      fill: blue;
+    }
+  }
+}

@@ -1,5 +1,4 @@
-import {v4 as uuidv4} from 'uuid';
-import {CirclesIcon, GridIcon, UserIcon} from '../components/icon';
+import {AddIcon, DuplicateIcon, ExportIcon, SaveIcon, MoveIcon, HelpIcon, MoreActionsIcon} from '../components/icon';
 
 export async function fetchUserConfig(personaId) {
   const baseUrl = `${process.env.REACT_APP_API}/personas/${personaId}`;
@@ -20,22 +19,47 @@ export async function fetchUserConfig(personaId) {
   }
 }
 
-export async function getUserAction(){
+export function getUserAction(){
   return [
     {
-      id: uuidv4(),
-      icon: UserIcon,
-      value: 3
+      id: 'save-persona',
+      icon: SaveIcon,
+      text: "Save persona"
     },
     {
-      id: uuidv4(),
-      icon: CirclesIcon,
-      value: 1
+      id: 'add-element',
+      icon: AddIcon,
+      text: "Add element"
     },
     {
-      id: uuidv4(),
-      icon: GridIcon,
-      value: 1
+      id: 'export',
+      icon: ExportIcon,
+      text: "Export"
+    },
+    // {
+    //   isButtonGroup: true,
+    //   children: [
+    //     {
+    //       id: 'duplicate',
+    //       icon: DuplicateIcon,
+    //       text: "Duplicate"
+    //     },
+    //     {
+    //       id: 'move',
+    //       icon: MoveIcon,
+    //       text: "Move"
+    //     }
+    //   ]
+    // },
+    {
+      id: 'help',
+      icon: HelpIcon,
+      text: "Help"
+    },
+    {
+      id: 'more-actions',
+      icon: MoreActionsIcon,
+      text: "More actions"
     }
   ];
 
