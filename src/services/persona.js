@@ -1,7 +1,7 @@
 import {AddIcon, DuplicateIcon, ExportIcon, SaveIcon, MoveIcon, HelpIcon, MoreActionsIcon} from '../components/icon';
 
 export async function fetchUserConfig(personaId) {
-  const baseUrl = `${process.env.REACT_APP_API}/personas/${personaId}`;
+  const baseUrl = `${process.env.REACT_APP_API.trim()}/personas/${personaId}`;
   const response = await fetch(baseUrl);
   try{
     // const {data} = await response.json();

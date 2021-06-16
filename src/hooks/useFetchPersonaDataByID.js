@@ -12,7 +12,7 @@ export function useFetchPersonaDataByID(id) {
     };
 
     const requestPull = dataPull.map(requestParams => {
-      let url = `${process.env.REACT_APP_API}/${id}`
+      let url = `${process.env.REACT_APP_API.trim()}/${id}`
       if(requestParams){
         url = `${url}/${requestParams}`
       }
