@@ -6,7 +6,7 @@ const UserDashboardLazy =  lazy( () => import('../content/pages/user-dashboard-p
 
 const routes = [
   {
-    path: "/dashboard/:user",
+    path: "/dashboard/:id",
     component: UserDashboardLazy,
     exact: true
   },

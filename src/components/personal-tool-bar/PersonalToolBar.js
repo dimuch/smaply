@@ -1,39 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {EditIcon, TurnOffIcon, UserIcon} from '../icon';
 
 import {getUserAction} from '../../services/persona';
 
+import ListItem from './helpers/ListItem';
+import {EditIcon, UserIcon} from '../icon';
 
-const ListItem = ( {action, actionButtonHandlersMapper} ) => {
-  const GeneratedIcon = action.icon;
-  const caption = action.text;
-
-  return (
-    <li className="smaply-group-item" key={action.id}>
-      <button className={"smaply-icon-button button-caption-bottom button-middle"}
-              onClick={() => actionButtonHandlersMapper[action.id](action)}
-      >
-        <div className="smaply-icon">
-          <GeneratedIcon/>
-        </div>
-        <div className="smaply-button-caption">
-          <span>{caption}</span>
-        </div>
-      </button>
-    </li>
-  )
-}
-
-export default function PersonalToolBar() {
+export default function PersonalToolBar({templatePanelToggler, userData}) {
   const actions = getUserAction();
 
-  const [persona, setPersona] = useState({
-    'id': 20,
-    'name': 'Klaus',
-    'initials': 'KLA',
-    'color': '#F46060',
-    'avatar': 'klaus'
-  });
+  const [persona, setPersona] = useState(userData);
 
   const [disabledMode, setDisabledMode] = useState(true);
   const actionButtonHandlersMapper = {
@@ -62,6 +37,7 @@ export default function PersonalToolBar() {
 
   function addElementHandler(action){
     console.log('addElementHandler')
+    templatePanelToggler();
   }
 
   return (
@@ -97,7 +73,7 @@ export default function PersonalToolBar() {
             actions.map(action => {
               if(action.isButtonGroup){
                 return (
-                  <ul className="smaply-group-controls">
+                  <ul className="smaply-group-controls" key={action.id+'-parent'}>
                     {
                       action.items.map(action => (
                         <ListItem action={action} actionButtonHandlersMapper={actionButtonHandlersMapper} key={action.id}/>

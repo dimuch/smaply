@@ -21,7 +21,7 @@
     background-color: transparent;
     border-radius: 0;
     span{
-      color: #3C4646;
+      color: $global-nav-top-backgr;
       font-size: 1.25rem;
       font-weight: 300;
       line-height: initial;
@@ -33,11 +33,11 @@
       max-width: 20rem;
       margin-right: .25rem;
       border: none;
-      color: #3C4646;
+      color: $global-nav-top-backgr;
       font-size: 1.25rem;
       font-weight: 700;
       font-family: "Source Sans Pro", sans-serif;
-      border-bottom: 2px solid #3C4646;
+      border-bottom: 2px solid $global-nav-top-backgr;
       background-color: transparent;
       cursor: pointer;
       outline: none;

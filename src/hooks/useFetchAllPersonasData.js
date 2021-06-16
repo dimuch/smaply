@@ -29,6 +29,9 @@ export function useFetchAllPersonasData(url) {
 
     fetchData()
       .then((data) => {
+
+        console.log(data);
+
         setServerData(data);
       })
       .catch(err => {

@@ -1,57 +1,139 @@
-import React, {useEffect} from 'react';
-import PersonalToolBar from '../../../components/personal-tool-bar/PersonalToolBar';
+import React, {useEffect, useState} from 'react';
+import {CSSTransition} from 'react-transition-group';
 
+import {useParams} from 'react-router-dom';
+
+import PersonalToolBar from '../../../components/personal-tool-bar/PersonalToolBar';
+import UserAvatarIcon from '../../../components/icon/user-avatar';
+import {useFetchPersonaDataByID} from '../../../hooks/useFetchPersonaDataByID';
+import DragAndDrop from '../../../components/drag-and-drop/DragAndDrop';
 
 export default function UserDashboard() {
+  const [state, setState] = useState({off: false});
+
+  const { id } = useParams();
+  const {id: userID, avatar,color,initials,name, fieldsByColumn} = useFetchPersonaDataByID(id);
+
+  const [personaData, setPersonaData] = useState(null);
+
+  const [inputsUIState, setInputsUIState] = useState({
+    name: 'valid',
+    initials: 'valid'
+  })
+
+  useEffect(() => {
+    const mergedData = {userID, avatar,color,initials,name, fieldsByColumn};
+    setPersonaData(mergedData);
+  }, [userID, fieldsByColumn]);
+
+
+  const toggleTemplatesPanel = () => {
+    setState({...state, off: !state.off});
+  }
+
+  const updatePersonaField = (e, field) => {
+    const value = e.target.value.trim();
+
+    let updatedPersona = {
+      ...personaData,
+      [field]: value
+    }
+
+    const mappedInitialsValue = field === 'initials' ? updatedPersona.initials : updatedPersona.name;
+
+    updatedPersona = {
+      ...updatedPersona,
+      initials: getPersonaInitials(mappedInitialsValue)
+    }
+
+    setPersonaData(updatedPersona);
+  }
+
+  const validatePersonaField = (e, field) => {
+    const value = e.target.value.trim();
+    const isValueEmpty = !value || value.length === 0;
+
+    const updatedInputsUIState = {
+      ...inputsUIState,
+      [field]: isValueEmpty ? 'invalid' : 'valid'
+    }
+    setInputsUIState(updatedInputsUIState);
+  }
+
+  const getPersonaInitials = (name) => {
+    const initials = name.slice(0,3).toLocaleUpperCase();
+    return initials;
+  }
+
+  const styles = {
+    userAvatar: {
+      backgroundColor: color || 'grey'
+    }
+  }
+
+  if(!personaData || !personaData.userID){
+    return (
+      <div className="smaply-dashboard-page">
+        <p>...loading</p>
+      </div>
+    )
+  }
 
   return (
     <div className="smaply-dashboard-page">
-      <PersonalToolBar/>
+      <PersonalToolBar templatePanelToggler={toggleTemplatesPanel} userData={personaData}/>
       <div className="smaply-user-dashboard-wrapper">
         <div className="smaply-user-dashboard">
-          What is Lorem Ipsum?
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum.
+          <div className="smaply-user-dashboard-header">
+            <div className="smaply-user-avatar" style={styles.userAvatar}>
+              <div className="smaply-icon">
+                <UserAvatarIcon/>
+              </div>
+            </div>
+            <div className="smaply-user-name smaply-block-data">
+              <div className="smaply-block-data-title">
+                <p><strong>persona name</strong></p>
+              </div>
+              <div className={'smaply-block-data-data ' + inputsUIState['name']}>
+                <input
+                  id="name"
+                  value={personaData.name}
+                  onBlur={(e) => {
+                    validatePersonaField(e, 'name')
+                  }}
+                  onChange={(e) => updatePersonaField(e, 'name')}
+                />
+              </div>
+            </div>
+            <div className="smaply-user-initials smaply-block-data">
+              <div className="smaply-block-data-title">
+                <p><strong>short name</strong></p>
+              </div>
+              <div className={'smaply-block-data-data ' + inputsUIState['initials']}>
+                <input
+                  id="initials"
+                  value={personaData.initials}
+                  onBlur={(e) => {
+                    validatePersonaField(e, 'initials')
+                  }}
+                  onChange={(e) => updatePersonaField(e, 'initials')}
+                />
+              </div>
+            </div>
+          </div>
 
-          Why do we use it?
-          It is a long established fact that a reader will be distracted by the readable content of a page when looking
-          at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-          opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
-          packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-          will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
-
-
-          Where does it come from?
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-          literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
-          College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-          and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem
-          Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-          Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the
-          Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
-          1.10.32.
-
-          The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections
-          1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original
-          form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-          Where can I get some?
-          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
-          some form, by injected humour, or randomised words which don't look even slightly believable. If you are going
-          to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of
-          text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making
-          this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a
-          handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem
-          Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+          <DragAndDrop componentsData={fieldsByColumn}/>
         </div>
-        <div className="smaply-user-templates">
 
-        </div>
+        <CSSTransition
+          timeout={250}
+          classNames="smaply-user-templates-panel"
+          in={state.off}
+        >
+          <div className="smaply-user-templates">
+
+          </div>
+        </CSSTransition>
       </div>
     </div>
   );

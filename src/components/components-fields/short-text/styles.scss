@@ -1,0 +1,21 @@
+.smaply-user-templates-item{
+  padding: 0.5rem 0.5rem .75rem 0.75rem;
+  background-color: $white;
+  margin-bottom: 1rem;
+}
+
+.smaply-user-templates-item-title-wrapper{
+  display: flex;
+  justify-content: space-between;
+  p{
+    color: $global-nav-top-group-item-icon;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+.smaply-user-templates-item-content-wrapper{
+
+  p {
+    color: $global-nav-top-backgr;
+  }
+}
